@@ -1,0 +1,69 @@
+{
+  "name": "llm-utils",
+  "version": "1.0.3",
+  "scripts": {
+    "ci:getTag": "node -e \"console.log(require('./services/${SERVICE_NAME}/package.json').config.registry + ':$CI_COMMIT_REF_SLUG.$CI_PIPELINE_ID');\"",
+    "ci:build": "cd ./services/$SERVICE_NAME && npm run build",
+    "test": "npx jest --config=jest.unit.config.ts --silent",
+    "semantic-release": "./node_modules/.bin/semantic-release",
+    "onnx": "ts-node llm/onnx.ts",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+  },
+  "workspaces": [
+    "services/*"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "author": "LAD",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@types/content-disposition": "^0.5.5",
+    "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^8.5.9",
+    "@types/xml2js": "^0.4.11",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "lefthook": "^1.6.18",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "semantic-release": "^23.0.2",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.14.0",
+    "@fastify/auth": "^4.3.0",
+    "@fastify/basic-auth": "^5.0.0",
+    "@fastify/cors": "^8.2.0",
+    "@fastify/multipart": "^7.4.0",
+    "@fastify/swagger": "^8.11.0",
+    "@fastify/swagger-ui": "2.1.0",
+    "@lad-tech/eslint-config": "^0.0.17",
+    "@xenova/transformers": "^2.17.2",
+    "ajv": "^8.13.0",
+    "ajv-formats": "^3.0.1",
+    "ajv-keywords": "^5.1.0",
+    "axios": "1.7.4",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.26.2",
+    "json-schema": "^0.4.0",
+    "jsonwebtoken": "^9.0.0",
+    "jszip": "^3.10.1",
+    "mongodb": "^6.8.0",
+    "onnxruntime-node": "^1.20.0",
+    "openai": "^4.73.0",
+    "reflect-metadata": "^0.1.13",
+    "stream-buffers": "^3.0.2",
+    "uuid": "^9.0.0",
+    "xml2js": "^0.6.2"
+  }
+}
